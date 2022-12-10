@@ -6,7 +6,7 @@ on:
     branches: [ "dev","staging","prod" ]
 jobs:
   build:
-    name: Build
+    name: Trivy
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout code
