@@ -24,6 +24,14 @@ data "terraform_remote_state" "launchTemplate" {
     region = "us-east-1"                                   // Region where bucket created
   }
 }
+data "terraform_remote_state" "targetGroup" {
+  backend = "s3"
+  config = {
+    bucket = "${var.env}-acs730-finalproject-group15"   // Bucket from where to GET Terraform State
+    key    = "${var.env}-targetGroup/terraform.tfstate" // Object name in the bucket to GET Terraform State
+    region = "us-east-1"                                // Region where bucket created
+  }
+}
 # Local variables
 locals {
   default_tags = merge(
@@ -42,6 +50,7 @@ resource "aws_autoscaling_group" "this" {
     id      = data.terraform_remote_state.launchTemplate.outputs.launch_template_id
     version = "$Latest"
   }
+  target_group_arns = [data.terraform_remote_state.targetGroup.outputs.target_group_arn]
   enabled_metrics = [
     "GroupMinSize",
     "GroupMaxSize",
