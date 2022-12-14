@@ -26,9 +26,20 @@ locals {
 }
 
 resource "aws_launch_template" "this" {
-  name                   = "${local.name_prefix}-aws_launch_template"
-  image_id               = var.image
-  instance_type          = var.instance_type
+  name          = "${local.name_prefix}-aws_launch_template"
+  image_id      = var.image
+  instance_type = var.instance_type
+
+  metadata_options {
+    http_endpoint               = "enabled"
+    http_tokens                 = "required"
+    http_put_response_hop_limit = 1
+    instance_metadata_tags      = "enabled"
+  }
+  instance_initiated_shutdown_behavior = "terminate"
+  monitoring {
+    enabled = true
+  }
   key_name               = var.linux_key_ec2
   vpc_security_group_ids = [data.terraform_remote_state.security_group.outputs.web_sg_id]
   user_data              = filebase64("${path.module}/install_httpd.sh")

@@ -28,7 +28,7 @@ variable "instance_type" {
 }
 
 variable "linux_key_ec2" {
-  default     = "/home/ec2-user/.ssh/Group15-dev.pub"
+  default     = "acs-project"
   description = "Path to the public key to use in Linux VMs provisioning"
   type        = string
 }
