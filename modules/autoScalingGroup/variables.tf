@@ -16,17 +16,18 @@ variable "prefix" {
   description = "Name prefix"
 }
 
-variable "image" {
-  type        = string
-  description = "EC2 image"
+variable "min_size" {
+  type        = number
+  description = "Min size for autoscaling group"
 }
 
-variable "instance_type" {
+variable "desired_capacity" {
   type        = string
-  description = "Instance Type for the Launch Template"
+  description = "Desired size for autoscaling group"
 }
-variable "linux_key_ec2" {
-  description = "Path to the public key for linux VM provisioning"
+variable "max_size" {
+  description = "Max capacity for autoscaling group"
   type        = string
 }
+
 
