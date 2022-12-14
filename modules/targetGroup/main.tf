@@ -20,7 +20,7 @@ locals {
 resource "aws_lb_target_group" "this" {
   name     = "${local.name_prefix}-alb-target-group"
   port     = 80
-  protocol = "TCP"
+  protocol = "HTTP"
   vpc_id   = data.terraform_remote_state.network.outputs.vpc_id
   tags = merge(local.default_tags,
     {
