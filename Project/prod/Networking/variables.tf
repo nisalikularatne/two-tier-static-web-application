@@ -1,7 +1,7 @@
 # Default tags
 variable "default_tags" {
   default = {
-    "Owner" = "Prajesh"
+    "Owner" = "Group15"
     "App"   = "Web"
   }
   type        = map(any)
@@ -10,16 +10,22 @@ variable "default_tags" {
 
 # Name prefix
 variable "prefix" {
-  default     = "Project-Group15"
+  default     = "Group15"
   type        = string
   description = "Name prefix"
 }
 
 # Provision public subnets in custom VPC
-variable "private_cidr_blocks" {
-  default     = ["10.250.0.0/24", "10.250.1.0/24"]
+variable "public_subnet_cidr_blocks" {
+  default     = ["10.250.0.0/24", "10.250.1.0/24", "10.250.2.0/24"]
   type        = list(string)
   description = "Public Subnet CIDRs"
+}
+
+variable "private_subnet_cidr_blocks" {
+  default     = ["10.250.3.0/24", "10.250.4.0/24", "10.250.5.0/24"]
+  type        = list(string)
+  description = "Private Subnet CIDRs"
 }
 
 # VPC CIDR range
@@ -28,4 +34,12 @@ variable "vpc_cidr" {
   type        = string
   description = "VPC to host static web site"
 }
+
+# Variable to signal the current environment
+variable "env" {
+  default     = "prod"
+  type        = string
+  description = "Deployment Environment"
+}
+
 
