@@ -1,8 +1,13 @@
-# Add output variables
-output "subnet_id" {
-  value = aws_subnet.public_subnet[*].id
+output "public_subnet_ids" {
+  value = module.vpc-prod.public_subnet_ids
 }
 
+output "private_subnet_ids" {
+  value = module.vpc-prod.private_subnet_ids
+}
+output "natgateway_ids" {
+  value = module.vpc-prod.nat_gateway_id
+}
 output "vpc_id" {
-  value = aws_vpc.main.id
+  value = module.vpc-prod.vpc_id
 }
