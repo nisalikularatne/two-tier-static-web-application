@@ -78,6 +78,9 @@ resource "aws_route_table_association" "public_route_table_association" {
 }
 resource "aws_eip" "this" {
   vpc = true
+  tags = {
+    Name = "${local.name_prefix}-EIP"
+  }
 }
 resource "aws_nat_gateway" "this" {
   allocation_id = aws_eip.this.id
@@ -99,7 +102,7 @@ resource "aws_route_table" "private_route_table" {
     gateway_id = aws_nat_gateway.this.id
   }
   tags = {
-    Name = "${local.name_prefix}-route-public-route_table"
+    Name = "${local.name_prefix}-route-private-route_table"
   }
 }
 
