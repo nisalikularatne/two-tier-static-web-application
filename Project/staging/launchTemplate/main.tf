@@ -6,4 +6,5 @@ module "launchTemplate-staging" {
   image         = var.image
   instance_type = var.instance_type
   linux_key_ec2 = var.linux_key_ec2
+  env           = var.env
 }
