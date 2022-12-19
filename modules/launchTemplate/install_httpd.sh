@@ -12,4 +12,48 @@ yum update -y
 yum install -y httpd.x86_64
 systemctl start httpd.service
 systemctl enable httpd.service
-echo "Hello World from $(hostname -f)" > /var/www/html/index.html
+sudo aws s3 cp s3://group15-finalproject-nisalikularatne-webserver/images/nisali.jpg /var/www/html
+sudo aws s3 cp s3://group15-finalproject-nisalikularatne-webserver/images/ashish.jpg /var/www/html
+sudo aws s3 cp s3://group15-finalproject-nisalikularatne-webserver/images/prajesh.jpg /var/www/html
+sudo aws s3 cp s3://group15-finalproject-nisalikularatne-webserver/images/sushma.jpg /var/www/html
+echo "<!DOCTYPE html>
+      <html>
+      <head>
+          <meta charset="utf-8">
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+          <link rel="shortcut icon" href="#">
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+          <title>Welcome to Cats and Dogs</title>
+      </head>
+      <style media="screen">
+          body {
+              background-color: rgba(5, 12, 5, 0.32);
+              font-size: 50pt;
+              color: rgba(5, 12, 5, 0.65);
+          }
+      </style>
+      <body>
+      <div class="container-fluid">
+          <div id="one" class="text-center">
+              <span>Group15 ACS Project</span>
+          </div>
+          <div class="row">
+              <div class="col-md-3 text-center">
+                  <img src="nisali.jpg" width="350" height="600" alt="..." class="img-rounded">
+              </div>
+              <div class="col-md-3 text-center">
+                  <img src="sushma.jpg" width="350" height="600" alt="..." class="img-rounded">
+              </div>
+              <div class="col-md-3 text-center">
+                  <img src="prajesh.jpg" width="350" height="600" alt="..." class="img-rounded">
+              </div>
+              <div class="col-md-3 text-center">
+                  <img src="ashish.jpg" width="350" height="600" alt="..." class="img-rounded">
+              </div>
+      </div>
+      </div>
+      </body>
+      </html>
+
+" > /var/www/html/index.html
