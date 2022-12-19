@@ -34,3 +34,7 @@ variable "to_port_ssh" {
   type        = number
   description = "Port to SSH"
 }
+variable "bucket_name" {
+  description = "Region for S3 bucket"
+  type        = string
+}

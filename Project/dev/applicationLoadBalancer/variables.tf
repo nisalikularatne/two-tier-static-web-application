@@ -7,7 +7,11 @@ variable "default_tags" {
   type        = map(any)
   description = "Default tags to be applied to all AWS resources"
 }
-
+variable "bucket_name" {
+  default     = "dev-acs730-finalproject-group15-bucket"
+  description = "Region for S3 bucket"
+  type        = string
+}
 # Name prefix
 variable "prefix" {
   type        = string
