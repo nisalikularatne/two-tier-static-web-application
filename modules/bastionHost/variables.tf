@@ -29,4 +29,7 @@ variable "linux_key_ec2" {
   description = "Path to the public key for linux VM provisioning"
   type        = string
 }
-
+variable "bucket_name" {
+  description = "Region for S3 bucket"
+  type        = string
+}

@@ -6,7 +6,6 @@ variable "default_tags" {
 }
 # Variable to signal the current environment
 variable "env" {
-  default     = "dev"
   type        = string
   description = "Deployment Environment"
 }
@@ -27,6 +26,10 @@ variable "instance_type" {
 }
 variable "linux_key_ec2" {
   description = "Path to the public key for linux VM provisioning"
+  type        = string
+}
+variable "bucket_name" {
+  description = "Name of bucket where the images are stored"
   type        = string
 }
 

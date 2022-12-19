@@ -2,31 +2,31 @@
 data "terraform_remote_state" "network" { // This is to use Outputs from Remote State
   backend = "s3"
   config = {
-    bucket = "${var.env}-acs730-nisalikularatnebucket-group15" // Bucket from where to GET Terraform State
-    key    = "${var.env}-network/terraform.tfstate"            // Object name in the bucket to GET Terraform State
-    region = "us-east-1"                                       // Region where bucket created
+    bucket = var.bucket_name                        // Bucket from where to GET Terraform State
+    key    = "${var.env}-network/terraform.tfstate" // Object name in the bucket to GET Terraform State
+    region = "us-east-1"                            // Region where bucket created
   }
 }
 data "terraform_remote_state" "security_group" { // This is to use Outputs from Remote State
   backend = "s3"
   config = {
-    bucket = "${var.env}-acs730-nisalikularatnebucket-group15" // Bucket from where to GET Terraform State
-    key    = "${var.env}-security-group/terraform.tfstate"     // Object name in the bucket to GET Terraform State
-    region = "us-east-1"                                       // Region where bucket created
+    bucket = var.bucket_name                               // Bucket from where to GET Terraform State
+    key    = "${var.env}-security-group/terraform.tfstate" // Object name in the bucket to GET Terraform State
+    region = "us-east-1"                                   // Region where bucket created
   }
 }
 data "terraform_remote_state" "targetGroup" {
   backend = "s3"
   config = {
-    bucket = "${var.env}-acs730-nisalikularatnebucket-group15" // Bucket from where to GET Terraform State
-    key    = "${var.env}-targetGroup/terraform.tfstate"        // Object name in the bucket to GET Terraform State
-    region = "us-east-1"                                       // Region where bucket created
+    bucket = var.bucket_name                            // Bucket from where to GET Terraform State
+    key    = "${var.env}-targetGroup/terraform.tfstate" // Object name in the bucket to GET Terraform State
+    region = "us-east-1"                                // Region where bucket created
   }
 }
 data "terraform_remote_state" "autoScalingGroup" {
   backend = "s3"
   config = {
-    bucket = "${var.env}-acs730-nisalikularatnebucket-group15"  // Bucket from where to GET Terraform State
+    bucket = var.bucket_name                                    // Bucket from where to GET Terraform State
     key    = "${var.env}-autoScalingGroupEC2/terraform.tfstate" // Object name in the bucket to GET Terraform State
     region = "us-east-1"                                        // Region where bucket created
   }

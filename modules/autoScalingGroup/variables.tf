@@ -29,5 +29,7 @@ variable "max_size" {
   description = "Max capacity for autoscaling group"
   type        = string
 }
-
-
+variable "bucket_name" {
+  description = "Region for S3 bucket"
+  type        = string
+}

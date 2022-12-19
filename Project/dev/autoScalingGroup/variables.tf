@@ -27,8 +27,8 @@ variable "min_size" {
   type    = number
   default = 1
 }
-
-
-
-
-
+variable "bucket_name" {
+  description = "Region for S3 bucket"
+  type        = string
+  default     = "dev-acs730-finalproject-group15-bucket"
+}

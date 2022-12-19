@@ -31,3 +31,7 @@ variable "scale_in_adjustment" {
   type        = number
   description = "Scale in adjustment"
 }
+variable "bucket_name" {
+  description = "Region for S3 bucket"
+  type        = string
+}

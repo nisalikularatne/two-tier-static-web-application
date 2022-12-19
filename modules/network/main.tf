@@ -102,7 +102,7 @@ resource "aws_route_table" "private_route_table" {
     gateway_id = aws_nat_gateway.this.id
   }
   tags = {
-    Name = "${local.name_prefix}-route-private-route_table"
+    Name = "${local.name_prefix}-route-private-route-table"
   }
 }
 
