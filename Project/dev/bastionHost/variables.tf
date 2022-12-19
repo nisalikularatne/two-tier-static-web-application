@@ -32,5 +32,9 @@ variable "linux_key_ec2" {
   description = "Path to the public key to use in Linux VMs provisioning"
   type        = string
 }
-
+variable "bucket_name" {
+  default     = "dev-acs730-finalproject-group15-bucket"
+  description = "Region for S3 bucket"
+  type        = string
+}
 
