@@ -1,5 +1,6 @@
 module "applicationLoadBalancer-staging" {
-  source = "../../../modules/applicationLoadBalancer"
-  prefix = var.prefix
-  env = var.env
+  source      = "../../../modules/applicationLoadBalancer"
+  prefix      = var.prefix
+  bucket_name = var.bucket_name
+  env         = var.env
 }

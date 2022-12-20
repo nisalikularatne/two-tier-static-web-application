@@ -5,5 +5,6 @@ module "autoScalingGroup-staging" {
   desired_capacity = var.desired_capacity
   min_size         = var.min_size
   max_size         = var.max_size
-  env = var.env
+  env              = var.env
+  bucket_name      = var.bucket_name
 }

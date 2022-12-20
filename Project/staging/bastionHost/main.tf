@@ -1,7 +1,7 @@
 
 # Module to deploy basic networking
-module "launchTemplate-staging" {
-  source        = "../../../modules/launchTemplate"
+module "bastion-staging" {
+  source        = "../../../modules/bastionHost"
   prefix        = var.prefix
   image         = var.image
   instance_type = var.instance_type
