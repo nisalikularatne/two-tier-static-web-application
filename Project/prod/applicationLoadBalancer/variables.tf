@@ -8,6 +8,12 @@ variable "default_tags" {
   description = "Default tags to be applied to all AWS resources"
 }
 
+variable "bucket_name" {
+  default     = "prod-acs730-finalproject-group15-bucket"
+  description = "Region for S3 bucket"
+  type        = string
+}
+
 # Name prefix
 variable "prefix" {
   type        = string

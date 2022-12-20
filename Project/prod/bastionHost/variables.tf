@@ -15,20 +15,34 @@ variable "prefix" {
   description = "Name prefix"
 }
 
-variable "desired_capacity" {
-  type    = number
-  default = 1
-}
-variable "max_size" {
-  type    = number
-  default = 4
-}
-variable "min_size" {
-  type    = number
-  default = 1
+variable "image" {
+  type        = string
+  default     = "ami-0b0dcb5067f052a63"
+  description = "Instance Type for the Launch Template"
 }
 
+variable "instance_type" {
+  default     = "t3.medium"
+  type        = string
+  description = "The type of the instance to be deployed"
+}
+
+variable "linux_key_ec2" {
+  default     = "acs-project"
+  description = "Path to the public key to use in Linux VMs provisioning"
+  type        = string
+}
+
+# Variable to signal the current environment
+variable "env" {
+  default     = "prod"
+  type        = string
+  description = "Deployment Environment"
+}
 
 
-
-
+variable "bucket_name" {
+  default     = "prod-acs730-finalproject-group15-bucket"
+  description = "Region for S3 bucket"
+  type        = string
+}
