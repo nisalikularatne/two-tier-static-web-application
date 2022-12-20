@@ -15,14 +15,10 @@ variable "prefix" {
   description = "Name prefix"
 }
 
-variable "image" {
-  type        = string
-  default     = "ami-0b0dcb5067f052a63"
-  description = "Instance Type for the Launch Template"
-}
+
 
 variable "instance_type" {
-  default     = "t2.micro"
+  default     = "t3.micro"
   type        = string
   description = "The type of the instance to be deployed"
 }
