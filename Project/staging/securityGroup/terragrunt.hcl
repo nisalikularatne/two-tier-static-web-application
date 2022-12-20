@@ -1,4 +1,0 @@
-dependencies {
-  paths = ["../network"]
-}
-
