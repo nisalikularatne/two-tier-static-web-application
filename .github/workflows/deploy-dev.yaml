@@ -4,11 +4,6 @@ on:
   push:
     branches:
       - dev
-env:
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  AWS_SESSION_TOKEN : ${{secrets.AWS_SESSION_TOKEN }}
-  AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -32,6 +27,16 @@ jobs:
           curl -O https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip
           unzip terraform_0.12.24_linux_amd64.zip
           mv terraform /usr/local/bin/
+      - name: Configure AWS CLI
+        env:
+            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+        run: |
+            aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+            aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+            aws configure set aws_session_toke $AWS_SESSION_TOKEN
+            aws configure set default.region $AWS_DEFAULT_REGION
       - name: Deploy networking infrastructure
         run: |
           cd Project/dev/network/
