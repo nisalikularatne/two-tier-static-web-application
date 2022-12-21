@@ -23,3 +23,8 @@ variable "env" {
   description = "Deployment Environment"
 }
 
+variable "bucket_name" {
+  default     = "prod-acs730-finalproject-group15-bucket"
+  description = "Region for S3 bucket"
+  type        = string
+}
