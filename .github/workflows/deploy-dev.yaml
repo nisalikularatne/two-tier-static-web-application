@@ -3,7 +3,7 @@ name: Deploy Infrastructure on DEV
 on:
   push:
     branches:
-      - dev
+      - workflow_test
   deployment:
     types: [ created ]
 jobs:
@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: dev
     env:
-      WORKING_DIR: Project/dev/
+      WORKING_DIR: ./Project/dev/
     defaults:
       run:
         working-directory: ${{ env.WORKING_DIR }}
