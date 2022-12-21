@@ -17,7 +17,7 @@ variable "prefix" {
 
 variable "desired_capacity" {
   type    = number
-  default = 1
+  default = 2
 }
 variable "max_size" {
   type    = number
@@ -25,7 +25,7 @@ variable "max_size" {
 }
 variable "min_size" {
   type    = number
-  default = 1
+  default = 2
 }
 variable "bucket_name" {
   description = "Region for S3 bucket"

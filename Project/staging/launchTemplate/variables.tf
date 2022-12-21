@@ -15,12 +15,6 @@ variable "prefix" {
   description = "Name prefix"
 }
 
-variable "image" {
-  type        = string
-  default     = "ami-0b0dcb5067f052a63"
-  description = "Instance Type for the Launch Template"
-}
-
 variable "instance_type" {
   default     = "t3.small"
   type        = string
@@ -40,4 +34,19 @@ variable "env" {
   description = "Deployment Environment"
 }
 
+variable "s3_role_name" {
+  default     = "s3-access-profile"
+  description = "Path to the public key to use in Linux VMs provisioning"
+  type        = string
+}
+variable "region" {
+  default     = "us-east-1"
+  description = "Region for S3 bucket"
+  type        = string
+}
+variable "bucket_name" {
+  default     = "staging-acs730-finalproject-group15-bucket"
+  description = "Region for S3 bucket"
+  type        = string
+}
 

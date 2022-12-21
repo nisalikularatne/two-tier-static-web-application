@@ -32,10 +32,18 @@ resource "aws_s3_object" "this" {
   key    = "images/${each.key}"
   source = "${path.module}/images/${each.key}"
 }
-
+# Data source for AMI id
+data "aws_ami" "latest_amazon_linux" {
+  owners      = ["amazon"]
+  most_recent = true
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-*-x86_64-gp2"]
+  }
+}
 resource "aws_launch_template" "this" {
   name          = "${local.name_prefix}-aws_launch_template"
-  image_id      = var.image
+  image_id      = data.aws_ami.latest_amazon_linux.id
   instance_type = var.instance_type
 
   metadata_options {

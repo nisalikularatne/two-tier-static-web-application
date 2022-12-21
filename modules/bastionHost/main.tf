@@ -26,7 +26,7 @@ locals {
 }
 
 resource "aws_instance" "bastion" {
-  ami                         = var.image
+  ami                         = data.aws_ami.latest_amazon_linux.id
   instance_type               = var.instance_type
   subnet_id                   = data.terraform_remote_state.network.outputs.public_subnet_ids[0]
   vpc_security_group_ids      = [data.terraform_remote_state.security_group.outputs.bastion_sg_id]
@@ -38,5 +38,14 @@ resource "aws_instance" "bastion" {
   key_name = var.linux_key_ec2
   tags = {
     Name = "${local.name_prefix}-bastionhost"
+  }
+}
+# Data source for AMI id
+data "aws_ami" "latest_amazon_linux" {
+  owners      = ["amazon"]
+  most_recent = true
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-*-x86_64-gp2"]
   }
 }

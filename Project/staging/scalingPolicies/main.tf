@@ -8,4 +8,5 @@ module "scalingPolicies-staging" {
   scale_in_threshold   = var.scale_in_threshold
   scale_in_adjustment  = var.scale_in_adjustment
   scale_out_adjustment = var.scale_out_adjustment
+  bucket_name          = var.bucket_name
 }

@@ -15,10 +15,6 @@ variable "prefix" {
   description = "Name prefix"
 }
 
-variable "image" {
-  type        = string
-  description = "EC2 image"
-}
 
 variable "instance_type" {
   type        = string
