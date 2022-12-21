@@ -30,7 +30,7 @@ jobs:
             aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
       - name: Change working directory
         run: |
-            cd Project
+            cd ./Project
             pwd
         shell: bash
       - name: Install dependencies
