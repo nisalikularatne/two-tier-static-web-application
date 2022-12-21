@@ -29,9 +29,7 @@ jobs:
             aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
             aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
       - name: Change working directory
-        run: |
-            cd ../Project
-            echo ${GITHUB_WORKSPACE}
+        echo: ${GITHUB_WORKSPACE}
         shell: bash
       - name: Install dependencies
         run: |
