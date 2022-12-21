@@ -17,7 +17,7 @@ variable "prefix" {
 
 variable "desired_capacity" {
   type    = number
-  default = 1
+  default = 3
 }
 variable "max_size" {
   type    = number
@@ -25,7 +25,7 @@ variable "max_size" {
 }
 variable "min_size" {
   type    = number
-  default = 1
+  default = 3
 }
 
 # Variable to signal the current environment
