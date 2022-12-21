@@ -79,6 +79,8 @@ Inside of the ACS_Group_15_FinalProject
 cd Project/dev
 alias tf=terraform
 tf init
+tf fmt
+tf validate
 tf plan 
 tf apply
 ```
