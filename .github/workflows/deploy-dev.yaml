@@ -31,7 +31,7 @@ jobs:
       - name: Change working directory
         run: |
             cd ../Project
-            echo pwd
+            echo ${GITHUB_WORKSPACE}
         shell: bash
       - name: Install dependencies
         run: |
