@@ -39,6 +39,9 @@ jobs:
             AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
             AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
         run: |
+            echo "AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID"
+            echo "AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY"
+            echo "AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION"
             aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
             aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
             aws configure set aws_session_toke $AWS_SESSION_TOKEN
