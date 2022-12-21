@@ -41,7 +41,7 @@ jobs:
             aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
             aws configure set aws_session_toke $AWS_SESSION_TOKEN
             aws configure set default.region $AWS_DEFAULT_REGION
-      - name: Deploy networking infrastructure #
+      - name: Deploy networking infrastructure
         run: |
           cd Project/dev/network/
           terraform init
