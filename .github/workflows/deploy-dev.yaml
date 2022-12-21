@@ -10,6 +10,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     environment: dev
+    env:
+      WORKING_DIR: ./Project/dev/
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIR }}
     container:
       image: ubuntu:18.04
 
@@ -39,13 +44,13 @@ jobs:
 
       - name: Deploy networking infrastructure
         run: |
-          cd Project/dev/network/
+          cd network
           terraform init
           terraform plan -out=tfplan
           terraform apply tfplan
       - name: Deploy security group infrastructure
         run: |
-          cd Project/dev/securityGroup/
+          cd securityGroup
           terraform init
           terraform plan -out=tfplan
           terraform apply tfplan
