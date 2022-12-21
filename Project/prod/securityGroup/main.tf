@@ -8,4 +8,5 @@ module "security-group-prod" {
   to_port_http   = 80
   to_port_ssh    = 22
   prefix         = var.prefix
+  bucket_name    = var.bucket_name
 }
