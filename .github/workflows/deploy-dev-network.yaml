@@ -1,4 +1,4 @@
-name: "Terraform Deployment - Dev"
+name: "Terraform Deployment - Dev Network"
 # https://gaunacode.com/deploying-terraform-at-scale-with-github-actions
 on:
   workflow_dispatch:
