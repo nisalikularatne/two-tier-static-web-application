@@ -24,7 +24,7 @@ variable "instance_type" {
 }
 
 variable "linux_key_ec2" {
-  default     = "acs-project"
+  default     = "acs-project-dev"
   description = "Path to the public key to use in Linux VMs provisioning"
   type        = string
 }
