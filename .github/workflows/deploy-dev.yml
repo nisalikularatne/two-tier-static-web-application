@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    privileged: true
+    privileged: true #for permission
 
     steps:
       - uses: actions/checkout@v2
