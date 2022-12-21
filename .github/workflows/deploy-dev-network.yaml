@@ -1,11 +1,6 @@
 name: "Terraform Deployment - Dev Network"
 # https://gaunacode.com/deploying-terraform-at-scale-with-github-actions
 on:
-  workflow_dispatch:
-    branches:
-      - workflow_test
-    paths:
-      - Project/dev/network/**
   push:
     branches:
       - workflow_test
