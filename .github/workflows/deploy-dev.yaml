@@ -30,7 +30,6 @@ jobs:
             aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
       - name: Change working directory
         echo: ${GITHUB_WORKSPACE}
-        shell: bash
       - name: Install dependencies
         run: |
           apt-get clean 
