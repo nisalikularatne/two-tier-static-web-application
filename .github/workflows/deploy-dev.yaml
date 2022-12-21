@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: dev
     env:
-      WORKING_DIR: ./Project/dev/
+      WORKING_DIR: ./Project/dev/network
     defaults:
       run:
         working-directory: ${{ env.WORKING_DIR }}
@@ -47,7 +47,6 @@ jobs:
 
       - name: Deploy networking infrastructure
         run: |
-          cd network
           terraform init
           terraform plan -out=tfplan
           terraform apply tfplan
