@@ -1,0 +1,69 @@
+name: Deploy Infrastructure on DEV
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          apt-get update
+          apt-get install -y unzip
+          curl -O https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip
+          unzip terraform_0.12.24_linux_amd64.zip
+          mv terraform /usr/local/bin/
+      - name: Deploy networking infrastructure
+        run: |
+          cd Project/network/
+          terraform init
+          terraform plan -out=tfplan
+          terraform apply tfplan
+      - name: Deploy security group infrastructure
+        run: |
+          cd Project/securityGroup/
+          terraform init
+          terraform plan -out=tfplan
+          terraform apply tfplan
+      - name: Deploy launch template infrastructure
+        run: |
+          cd Project/launchTemplate/
+          terraform init
+          terraform plan -out=tfplan
+          terraform apply tfplan
+      - name: Deploy bastion host infrastructure
+        run: |
+          cd Project/bastionHost/
+          terraform init
+          terraform plan -out=tfplan
+          terraform apply tfplan
+      - name: Deploy target group infrastructure
+        run: |
+          cd Project/targetGroup/
+          terraform init
+          terraform plan -out=tfplan
+          terraform apply tfplan
+      - name: Deploy application load balancer infrastructure
+        run: |
+          cd Project/applicationLoadBalancer/
+          terraform init
+          terraform plan -out=tfplan
+          terraform apply tfplan
+      - name: Deploy auto scaling group infrastructure
+        run: |
+          cd Project/autoScalingGroup/
+          terraform init
+          terraform plan -out=tfplan
+          terraform apply tfplan
+      - name: Deploy scaling policies infrastructure
+        run: |
+          cd Project/scalingPolicies/
+          terraform init
+          terraform plan -out=tfplan
+          terraform apply tfplan        
+    
