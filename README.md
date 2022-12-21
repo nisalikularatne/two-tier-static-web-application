@@ -16,6 +16,17 @@ The project also assesses technical proficiency in Terraform, Load Balancers, Au
 5. Load Balancers
 6. Auto Scaling Group
 7. Scaling Policies
+
+# Pre-commit hooks
+
+This repo defines Git pre-commit hooks intended for use with [pre-commit](http://pre-commit.com/). The currently
+supported hooks are:
+
+* **terraform-fmt**: Automatically run `terraform fmt` on all Terraform code (`*.tf` files).
+* **terraform-validate**: Automatically run `terraform validate` on all Terraform code (`*.tf` files).
+* **detect-aws-credentials**: Detects if any keys are present in the repository
+
+
 ## Pre - Requisites
 ### Step - 1 (Github Repository Clone)
 Clone the repository to your local environment of Cloud9 
@@ -106,12 +117,3 @@ For destroying using terragrunt do the below:
 ```terraform
 terragrunt run-all destroy
 ```
-# Pre-commit hooks
-
-This repo defines Git pre-commit hooks intended for use with [pre-commit](http://pre-commit.com/). The currently
-supported hooks are:
-
-* **terraform-fmt**: Automatically run `terraform fmt` on all Terraform code (`*.tf` files).
-* **terraform-validate**: Automatically run `terraform validate` on all Terraform code (`*.tf` files).
-* **detect-aws-credentials**: Detects if any keys are present in the repository
-
