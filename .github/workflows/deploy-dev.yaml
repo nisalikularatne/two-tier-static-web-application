@@ -51,6 +51,7 @@ jobs:
           terraform init
           terraform plan -out=tfplan
           terraform apply tfplan
+        shell: bash
       - name: Deploy security group infrastructure
         run: |
           cd securityGroup
@@ -63,6 +64,7 @@ jobs:
           terraform init
           terraform plan -out=tfplan
           terraform apply tfplan
+        shell: bash
       - name: Deploy bastion host infrastructure
         run: |
           cd Project/dev/bastionHost/
