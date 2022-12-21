@@ -34,11 +34,11 @@ Clone the repository to your local environment of Cloud9
 ```git clone git@github.com:nisalikularatne/ACS_Group_15_FinalProject.git```
 
 ### Step - 2 (Create 3 keys for each environment)
-Go into the ~/.ssh folder of your environment and generate a key for each environment as shown below
+In your AWS console in EC2 service under key pairs create one individual key for each environment
 ```
-ssh-keygen -t rsa -f Group15-dev
-ssh-keygen -t rsa -f Group15-staging
-ssh-keygen -t rsa -f Group15-prod
+dev environment - acs-project-dev
+staging environment - acs-project-staging
+production environment - acs-project-prod
 ```
 ### Step - 3 (S3 Settings)
 In the AWS portal under the S3 service create 3 buckets with the naming as shown below:
