@@ -22,6 +22,7 @@ jobs:
         run: |
           apt-get clean 
           apt-get update -qq
+          apt-get install -y unzip sudo
           apt-get install -y unzip
           apt-get install -y curl 
           curl -O https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip
@@ -50,43 +51,43 @@ jobs:
           terraform apply tfplan
       - name: Deploy security group infrastructure
         run: |
-          cd Project/securityGroup/
+          cd Project/dev/securityGroup/
           terraform init
           terraform plan -out=tfplan
           terraform apply tfplan
       - name: Deploy launch template infrastructure
         run: |
-          cd Project/launchTemplate/
+          cd Project/dev/launchTemplate/
           terraform init
           terraform plan -out=tfplan
           terraform apply tfplan
       - name: Deploy bastion host infrastructure
         run: |
-          cd Project/bastionHost/
+          cd Project/dev/bastionHost/
           terraform init
           terraform plan -out=tfplan
           terraform apply tfplan
       - name: Deploy target group infrastructure
         run: |
-          cd Project/targetGroup/
+          cd Project/dev/targetGroup/
           terraform init
           terraform plan -out=tfplan
           terraform apply tfplan
       - name: Deploy application load balancer infrastructure
         run: |
-          cd Project/applicationLoadBalancer/
+          cd Project/dev/applicationLoadBalancer/
           terraform init
           terraform plan -out=tfplan
           terraform apply tfplan
       - name: Deploy auto scaling group infrastructure
         run: |
-          cd Project/autoScalingGroup/
+          cd Project/dev/autoScalingGroup/
           terraform init
           terraform plan -out=tfplan
           terraform apply tfplan
       - name: Deploy scaling policies infrastructure
         run: |
-          cd Project/scalingPolicies/
+          cd Project/dev/scalingPolicies/
           terraform init
           terraform plan -out=tfplan
           terraform apply tfplan        
