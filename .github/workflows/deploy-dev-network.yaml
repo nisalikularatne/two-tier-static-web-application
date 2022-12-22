@@ -5,7 +5,7 @@ on:
     branches:
       - workflow_test
   deployment:
-    types: [ created ]
+    types: [ created ] #
 
 permissions:
   contents: read
