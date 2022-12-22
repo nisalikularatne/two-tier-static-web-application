@@ -3,7 +3,7 @@ name: "Terraform Deployment - Dev"
 on:
   push:
     branches:
-      - workflow_test
+      - dev
   deployment:
     types: [ created ]
 
