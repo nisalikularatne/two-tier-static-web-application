@@ -23,7 +23,7 @@ resource "aws_security_group" "web_sg" {
   vpc_id      = data.terraform_remote_state.network.outputs.vpc_id
 
   ingress {
-    description     = "HTTP from everywhere"
+    description     = "HTTP from from load balancer"
     from_port       = var.from_port_http
     to_port         = var.to_port_http
     protocol        = "tcp"
