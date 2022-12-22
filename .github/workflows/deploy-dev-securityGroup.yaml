@@ -8,9 +8,9 @@ on:
     types: [ created ]
 
   workflow_run:
-  workflows: [ "terraform" ]
-  branches: [ workflow_test ]
-  types:
+   workflows: [ "terraform" ]
+   branches: [ workflow_test ]
+   types:
       - completed
 
 permissions:
