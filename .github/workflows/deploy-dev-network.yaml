@@ -16,6 +16,7 @@ jobs:
     name: "Terraform for dev"
     runs-on: ubuntu-latest
     strategy:
+      max-parallel: 1
       matrix:
         workingDir: [ ./Project/dev/network,./Project/dev/securityGroup ]
     environment: dev
