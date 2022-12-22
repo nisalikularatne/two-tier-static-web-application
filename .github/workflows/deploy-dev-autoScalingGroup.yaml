@@ -55,7 +55,7 @@ jobs:
       - name: Terraform Plan
         id: plan
         run: terraform plan -input=false -no-color -out tf.plan
-        working-directory: ./Project/dev/network # Use your environment folder
+        working-directory: ./Project/dev/autoScalingGroup # Use your environment folder
         continue-on-error: true
 
       - name: Get result
