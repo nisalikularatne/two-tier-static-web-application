@@ -106,6 +106,6 @@ jobs:
               })
             }
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/workflow_test' && github.event_name == 'push'
+        if: github.ref == 'refs/heads/prod' && github.event_name == 'push'
         run: terraform apply -input=false tf.plan
         shell: bash
