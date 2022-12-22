@@ -1,6 +1,11 @@
 name: "Terraform Deployment - Dev Network"
 
-on: [workflow_call]
+on:
+  push:
+    branches:
+      - workflow_test
+  deployment:
+    types: [ created ]
 
 permissions:
   contents: read
