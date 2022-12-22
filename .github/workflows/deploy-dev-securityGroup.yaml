@@ -26,7 +26,7 @@ jobs:
       AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_SESSION_TOKEN:  ${{ secrets.AWS_SESSION_TOKEN }}
-      WORKING_DIR: ./Project/dev/network
+      WORKING_DIR: ./Project/dev/securityGroup
 
     defaults:
       run:
@@ -61,7 +61,7 @@ jobs:
       - name: Terraform Plan
         id: plan
         run: terraform plan -input=false -no-color -out tf.plan
-        working-directory: ./Project/dev/network # Use your environment folder
+        working-directory: ./Project/dev/securityGroup # Use your environment folder
         continue-on-error: true
 
       - name: Get result
