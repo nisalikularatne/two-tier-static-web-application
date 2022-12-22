@@ -106,6 +106,12 @@ jobs:
         run: terraform apply -input=false tf.plan
         shell: bash
   terraformSec:
+    on:
+      workflow_run:
+        workflows: [ "terraformNet" ]
+        branches: [ workflow_test ]
+        types:
+          - completed
     name: "Terraform for security group"
     runs-on: ubuntu-latest
     environment: dev
