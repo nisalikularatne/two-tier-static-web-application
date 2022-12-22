@@ -18,7 +18,7 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        workingDir: [ ./Project/dev/network,./Project/dev/securityGroup, ./Project/bastionHost, ./Project/launchTemplate, ./Project/targetGroup, ./Project/applicationLoadBalancer, ./Project/autoScalingGroup, ./Project/scalingPolicies ]
+        workingDir: [ ./Project/dev/network,./Project/dev/securityGroup, ./Project/dev/bastionHost, ./Project/dev/launchTemplate, ./Project/dev/targetGroup, ./Project/dev/applicationLoadBalancer, ./Project/dev/autoScalingGroup, ./Project/dev/scalingPolicies ]
     environment: dev
     env:
       AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
