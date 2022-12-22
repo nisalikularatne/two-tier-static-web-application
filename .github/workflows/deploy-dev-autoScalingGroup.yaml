@@ -1,4 +1,4 @@
-name: "Terraform Deployment - Dev Network"
+name: "Terraform Deployment - Dev Auto Scaling Group"
 
 on:
   push:

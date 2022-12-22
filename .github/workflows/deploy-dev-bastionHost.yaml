@@ -1,4 +1,4 @@
-name: "Terraform Deployment - Dev Network"
+name: "Terraform Deployment - Dev Bastion Host"
 
 on:
   push:
