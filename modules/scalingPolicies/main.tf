@@ -1,3 +1,6 @@
+provider "aws" {
+  region = "us-east-1"
+}
 # Use remote state to retrieve the data
 data "terraform_remote_state" "network" { // This is to use Outputs from Remote State
   backend = "s3"
