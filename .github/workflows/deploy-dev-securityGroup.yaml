@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   tests:
-    uses: ./.github/workflows/deploy-dev-network.yml
+    uses: ./deploy-dev-network.yml
   terraformSec:
     name: "Terraform for dev"
     needs: [tests]
