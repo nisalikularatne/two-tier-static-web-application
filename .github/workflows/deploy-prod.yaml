@@ -1,9 +1,9 @@
-name: "Terraform Deployment - Dev"
+name: "Terraform Deployment - prod"
 
 on:
   push:
     branches:
-      - workflow_test
+      - prod
   deployment:
     types: [ created ]
 
@@ -13,13 +13,13 @@ permissions:
 
 jobs:
   terraformNet:
-    name: "Terraform for dev"
+    name: "Terraform for prod"
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 1
       matrix:
-        workingDir: [ ./Project/dev/network,./Project/dev/securityGroup, ./Project/dev/bastionHost, ./Project/dev/launchTemplate, ./Project/dev/targetGroup, ./Project/dev/applicationLoadBalancer, ./Project/dev/autoScalingGroup, ./Project/dev/scalingPolicies ]
-    environment: dev
+        workingDir: [ ./Project/prod/network,./Project/prod/securityGroup, ./Project/prod/bastionHost, ./Project/prod/launchTemplate, ./Project/prod/targetGroup, ./Project/prod/applicationLoadBalancer, ./Project/prod/autoScalingGroup, ./Project/prod/scalingPolicies ]
+    environment: prod
     env:
       AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
