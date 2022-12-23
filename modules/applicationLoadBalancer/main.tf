@@ -5,7 +5,7 @@ provider "aws" {
 data "terraform_remote_state" "network" { // This is to use Outputs from Remote State
   backend = "s3"
   config = {
-    bucket = var.bucket_name                        // Bucket from where to GET Terraform State
+    bucket = var.bucketName                        // Bucket from where to GET Terraform State
     key    = "${var.env}-network/terraform.tfstate" // Object name in the bucket to GET Terraform State
     region = "us-east-1"                            // Region where bucket created
   }
@@ -13,7 +13,7 @@ data "terraform_remote_state" "network" { // This is to use Outputs from Remote 
 data "terraform_remote_state" "security_group" { // This is to use Outputs from Remote State
   backend = "s3"
   config = {
-    bucket = var.bucket_name                               // Bucket from where to GET Terraform State
+    bucket = var.bucketName                               // Bucket from where to GET Terraform State
     key    = "${var.env}-security-group/terraform.tfstate" // Object name in the bucket to GET Terraform State
     region = "us-east-1"                                   // Region where bucket created
   }
@@ -21,15 +21,15 @@ data "terraform_remote_state" "security_group" { // This is to use Outputs from 
 data "terraform_remote_state" "targetGroup" {
   backend = "s3"
   config = {
-    bucket = var.bucket_name                            // Bucket from where to GET Terraform State
+    bucket = var.bucketName                            // Bucket from where to GET Terraform State
     key    = "${var.env}-targetGroup/terraform.tfstate" // Object name in the bucket to GET Terraform State
     region = "us-east-1"                                // Region where bucket created
   }
 }
 # Local variables
 locals {
-  default_tags = merge(
-    var.default_tags,
+  defaultTags = merge(
+    var.defaultTags,
     { "Env" = var.env }
   )
   name_prefix = "${var.prefix}-${var.env}"

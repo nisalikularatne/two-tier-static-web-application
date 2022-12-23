@@ -1,5 +1,5 @@
 # Default tags
-variable "default_tags" {
+variable "defaultTags" {
   default     = {}
   type        = map(any)
   description = "Default tags to be applied to all AWS resources"
@@ -15,7 +15,7 @@ variable "prefix" {
   type        = string
   description = "Name prefix"
 }
-variable "bucket_name" {
+variable "bucketName" {
   description = "Region for S3 bucket"
   type        = string
 }
