@@ -10,7 +10,7 @@ data "terraform_remote_state" "network" { // This is to use Outputs from Remote 
     region = "us-east-1"                            // Region where bucket created
   }
 }
-data "terraform_remote_state" "security_group" { // This is to use Outputs from Remote State
+data "terraform_remote_state" "securityGroup" { // This is to use Outputs from Remote State
   backend = "s3"
   config = {
     bucket = var.bucket_name                               // Bucket from where to GET Terraform State
@@ -29,10 +29,10 @@ locals {
 }
 
 resource "aws_instance" "bastion" {
-  ami                         = data.aws_ami.latest_amazon_linux.id
+  ami                         = data.aws_ami.latestAmazonLinux.id
   instance_type               = var.instance_type
   subnet_id                   = data.terraform_remote_state.network.outputs.public_subnet_ids[0]
-  vpc_security_group_ids      = [data.terraform_remote_state.security_group.outputs.bastion_sg_id]
+  vpc_security_group_ids      = [data.terraform_remote_state.securityGroup.outputs.bastion_sg_id]
   associate_public_ip_address = true
 
   lifecycle {
@@ -44,7 +44,7 @@ resource "aws_instance" "bastion" {
   }
 }
 # Data source for AMI id
-data "aws_ami" "latest_amazon_linux" {
+data "aws_ami" "latestAmazonLinux" {
   owners      = ["amazon"]
   most_recent = true
   filter {

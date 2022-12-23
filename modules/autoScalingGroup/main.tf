@@ -10,7 +10,7 @@ data "terraform_remote_state" "network" { // This is to use Outputs from Remote 
     region = "us-east-1"                            // Region where bucket created
   }
 }
-data "terraform_remote_state" "security_group" { // This is to use Outputs from Remote State
+data "terraform_remote_state" "securityGroup" { // This is to use Outputs from Remote State
   backend = "s3"
   config = {
     bucket = var.bucket_name                               // Bucket from where to GET Terraform State

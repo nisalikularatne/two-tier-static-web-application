@@ -20,7 +20,7 @@ locals {
   name_prefix = "${var.prefix}-${var.env}"
 }
 # Security Group
-resource "aws_security_group" "web_sg" {
+resource "aws_security_group" "webSg" {
   name        = "${local.name_prefix}-allow_http_ssh_web_sg"
   description = "Allow HTTP and SSH inbound traffic"
   vpc_id      = data.terraform_remote_state.network.outputs.vpc_id
@@ -30,7 +30,7 @@ resource "aws_security_group" "web_sg" {
     from_port       = var.from_port_http
     to_port         = var.to_port_http
     protocol        = "tcp"
-    security_groups = [aws_security_group.loadbalancer_sg.id]
+    security_groups = [aws_security_group.loadbalancerSg.id]
   }
 
   ingress {
@@ -57,7 +57,7 @@ resource "aws_security_group" "web_sg" {
   )
 }
 # Security Group
-resource "aws_security_group" "loadbalancer_sg" {
+resource "aws_security_group" "loadbalancerSg" {
   name        = "${local.name_prefix}-allow_http_ssh_loadbalancer_sg"
   description = "Allow HTTP traffic"
   vpc_id      = data.terraform_remote_state.network.outputs.vpc_id
@@ -87,7 +87,7 @@ resource "aws_security_group" "loadbalancer_sg" {
   )
 }
 #Security group for bastion host
-resource "aws_security_group" "bastion-sg" {
+resource "aws_security_group" "bastionSg" {
   name        = "${local.name_prefix}-Allow-ssh"
   description = "Allow SSH inbound traffic"
   vpc_id      = data.terraform_remote_state.network.outputs.vpc_id

@@ -10,7 +10,7 @@ data "terraform_remote_state" "network" { // This is to use Outputs from Remote 
     region = "us-east-1"                            // Region where bucket created
   }
 }
-data "terraform_remote_state" "security_group" { // This is to use Outputs from Remote State
+data "terraform_remote_state" "securityGroup" { // This is to use Outputs from Remote State
   backend = "s3"
   config = {
     bucket = var.bucket_name                               // Bucket from where to GET Terraform State
@@ -36,7 +36,7 @@ resource "aws_s3_object" "this" {
   source = "${path.module}/images/${each.key}"
 }
 # Data source for AMI id
-data "aws_ami" "latest_amazon_linux" {
+data "aws_ami" "latestAmazonLinux" {
   owners      = ["amazon"]
   most_recent = true
   filter {
@@ -46,7 +46,7 @@ data "aws_ami" "latest_amazon_linux" {
 }
 resource "aws_launch_template" "this" {
   name          = "${local.name_prefix}-aws_launch_template"
-  image_id      = data.aws_ami.latest_amazon_linux.id
+  image_id      = data.aws_ami.latestAmazonLinux.id
   instance_type = var.instance_type
 
   metadata_options {
@@ -64,6 +64,6 @@ resource "aws_launch_template" "this" {
     name = "LabInstanceProfile"
   }
   depends_on             = [aws_s3_object.this]
-  vpc_security_group_ids = [data.terraform_remote_state.security_group.outputs.web_sg_id]
+  vpc_security_group_ids = [data.terraform_remote_state.securityGroup.outputs.web_sg_id]
   user_data              = base64encode(templatefile("${path.module}/install_httpd.sh.tpl", { env = var.env }))
 }

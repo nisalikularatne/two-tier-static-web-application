@@ -10,7 +10,7 @@ data "terraform_remote_state" "network" { // This is to use Outputs from Remote 
     region = "us-east-1"                            // Region where bucket created
   }
 }
-data "terraform_remote_state" "security_group" { // This is to use Outputs from Remote State
+data "terraform_remote_state" "securityGroup" { // This is to use Outputs from Remote State
   backend = "s3"
   config = {
     bucket = var.bucket_name                               // Bucket from where to GET Terraform State
@@ -37,7 +37,7 @@ locals {
 #Create application load balancer
 resource "aws_alb" "this" {
   name            = "${local.name_prefix}-alb"
-  security_groups = [data.terraform_remote_state.security_group.outputs.load_balancer_id]
+  security_groups = [data.terraform_remote_state.securityGroup.outputs.load_balancer_id]
   subnets         = data.terraform_remote_state.network.outputs.public_subnet_ids[*]
   tags = {
     Name = "${local.name_prefix}-alb"

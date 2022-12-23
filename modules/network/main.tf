@@ -25,7 +25,7 @@ resource "aws_vpc" "main" {
   )
 }
 # Add provisioning of the public subnet in the the VPC
-resource "aws_subnet" "public_subnet" {
+resource "aws_subnet" "publicSubnet" {
   count             = length(var.public_subnet_cidr_blocks)
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.public_subnet_cidr_blocks[count.index]
@@ -37,7 +37,7 @@ resource "aws_subnet" "public_subnet" {
   )
 }
 # Add provisioning of the private subnet in the the VPC
-resource "aws_subnet" "private_subnet" {
+resource "aws_subnet" "privateSubnet" {
   count             = length(var.private_subnet_cidr_blocks)
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.private_subnet_cidr_blocks[count.index]
@@ -59,7 +59,7 @@ resource "aws_internet_gateway" "this" {
   )
 }
 # Route table to route add default gateway pointing to Internet Gateway (IGW)
-resource "aws_route_table" "public_route_table" {
+resource "aws_route_table" "publicRouteTable" {
   vpc_id = aws_vpc.main.id
   route {
     cidr_block = "0.0.0.0/0"
@@ -71,10 +71,10 @@ resource "aws_route_table" "public_route_table" {
 }
 
 # Associate subnets with the custom route table
-resource "aws_route_table_association" "public_route_table_association" {
-  count          = length(aws_subnet.public_subnet[*].id)
-  route_table_id = aws_route_table.public_route_table.id
-  subnet_id      = aws_subnet.public_subnet[count.index].id
+resource "aws_route_table_association" "publicRouteTableAssociation" {
+  count          = length(aws_subnet.publicSubnet[*].id)
+  route_table_id = aws_route_table.publicRouteTable.id
+  subnet_id      = aws_subnet.publicSubnet[count.index].id
 }
 resource "aws_eip" "this" {
   vpc = true
@@ -84,7 +84,7 @@ resource "aws_eip" "this" {
 }
 resource "aws_nat_gateway" "this" {
   allocation_id = aws_eip.this.id
-  subnet_id     = aws_subnet.public_subnet[1].id
+  subnet_id     = aws_subnet.publicSubnet[1].id
 
   tags = {
     Name = "${local.name_prefix}-NAT"
@@ -95,7 +95,7 @@ resource "aws_nat_gateway" "this" {
   depends_on = [aws_internet_gateway.this]
 }
 # Priviate Route table
-resource "aws_route_table" "private_route_table" {
+resource "aws_route_table" "privateRouteTable" {
   vpc_id = aws_vpc.main.id
   route {
     cidr_block = "0.0.0.0/0"
@@ -107,8 +107,8 @@ resource "aws_route_table" "private_route_table" {
 }
 
 # Associate subnets with the custom route table
-resource "aws_route_table_association" "private_route_table_association" {
-  count          = length(aws_subnet.private_subnet[*].id)
-  route_table_id = aws_route_table.private_route_table.id
-  subnet_id      = aws_subnet.private_subnet[count.index].id
+resource "aws_route_table_association" "privateRouteTableAssociation" {
+  count          = length(aws_subnet.privateSubnet[*].id)
+  route_table_id = aws_route_table.privateRouteTable.id
+  subnet_id      = aws_subnet.privateSubnet[count.index].id
 }
