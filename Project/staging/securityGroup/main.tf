@@ -1,5 +1,5 @@
 
-# Module to deploy basic networking
+# Module to deploy basic networking in staging
 module "security-group-staging" {
   source         = "../../../modules/securityGroup"
   env            = var.env
