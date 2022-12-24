@@ -96,7 +96,7 @@ tf apply
 ### Prod
 Inside of the ACS_Group_15_FinalProject
 ```
-cd Project/staging
+cd Project/prod
 alias tf=terraform
 tf init
 tf plan 
