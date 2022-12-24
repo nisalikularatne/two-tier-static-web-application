@@ -5,7 +5,7 @@ on:
     branches:
       - staging
   deployment:
-    types: [ created ]
+    types: [created]
 
 permissions:
   contents: read
@@ -18,12 +18,22 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        workingDir: [ ./Project/staging/network,./Project/staging/securityGroup, ./Project/staging/bastionHost, ./Project/staging/launchTemplate, ./Project/staging/targetGroup, ./Project/staging/applicationLoadBalancer, ./Project/staging/autoScalingGroup, ./Project/staging/scalingPolicies ]
+        workingDir:
+          [
+            ./Project/staging/network,
+            ./Project/staging/securityGroup,
+            ./Project/staging/bastionHost,
+            ./Project/staging/launchTemplate,
+            ./Project/staging/targetGroup,
+            ./Project/staging/applicationLoadBalancer,
+            ./Project/staging/autoScalingGroup,
+            ./Project/staging/scalingPolicies,
+          ]
     environment: staging
     env:
-      AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_SESSION_TOKEN:  ${{ secrets.AWS_SESSION_TOKEN }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
       WORKING_DIR: ${{ matrix.workingDir }}
 
     defaults:
@@ -45,16 +55,13 @@ jobs:
         run: terraform fmt
         continue-on-error: true
 
-
       - name: Terraform Init
         id: init
         run: terraform init
 
-
       - name: Terraform Validate
         id: validate
         run: terraform validate -no-color
-
 
       - name: Terraform Plan
         id: plan
