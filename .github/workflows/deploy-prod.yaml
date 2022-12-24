@@ -5,7 +5,7 @@ on:
     branches:
       - prod
   deployment:
-    types: [ created ]
+    types: [created]
 
 permissions:
   contents: read
@@ -18,12 +18,22 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        workingDir: [ ./Project/prod/network,./Project/prod/securityGroup, ./Project/prod/bastionHost, ./Project/prod/launchTemplate, ./Project/prod/targetGroup, ./Project/prod/applicationLoadBalancer, ./Project/prod/autoScalingGroup, ./Project/prod/scalingPolicies ]
+        workingDir:
+          [
+            ./Project/prod/network,
+            ./Project/prod/securityGroup,
+            ./Project/prod/bastionHost,
+            ./Project/prod/launchTemplate,
+            ./Project/prod/targetGroup,
+            ./Project/prod/applicationLoadBalancer,
+            ./Project/prod/autoScalingGroup,
+            ./Project/prod/scalingPolicies,
+          ]
     environment: prod
     env:
-      AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_SESSION_TOKEN:  ${{ secrets.AWS_SESSION_TOKEN }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
       WORKING_DIR: ${{ matrix.workingDir }}
 
     defaults:
@@ -45,16 +55,13 @@ jobs:
         run: terraform fmt
         continue-on-error: true
 
-
       - name: Terraform Init
         id: init
         run: terraform init
 
-
       - name: Terraform Validate
         id: validate
         run: terraform validate -no-color
-
 
       - name: Terraform Plan
         id: plan
@@ -106,6 +113,6 @@ jobs:
               })
             }
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/workflow_test' && github.event_name == 'push'
+        if: github.ref == 'refs/heads/prod' && github.event_name == 'push'
         run: terraform apply -input=false tf.plan
         shell: bash
